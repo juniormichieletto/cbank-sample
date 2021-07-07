@@ -18,6 +18,7 @@ services:
     volumes:
       - .pgdata:/var/lib/postgresql/data
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=codebank
     ports:
@@ -27,13 +28,17 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: always
     tty: true
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@user.com
-      - PGADMIN_DEFAULT_PASSWORD=123456do
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
     ports:
       - "9000:80"
     depends_on:
+      - db
+    links:
       - db
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
