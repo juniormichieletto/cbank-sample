@@ -38,3 +38,7 @@ func (t *Transaction) ProcessAndValidate(creditCard *CreditCard) {
 		creditCard.Balance += t.Amount
 	}
 }
+
+func (t *Transaction) IsApproved() bool {
+	return t.Status == "approved"
+}

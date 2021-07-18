@@ -33,7 +33,7 @@ func (t *TransactionRepositoryDb) SaveTransaction(transaction domain.Transaction
 	if err != nil {
 		return err
 	}
-	if transaction.Status == "approved" {
+	if transaction.IsApproved() {
 		err = t.updateBalance(creditCard)
 		if err != nil {
 			return err
