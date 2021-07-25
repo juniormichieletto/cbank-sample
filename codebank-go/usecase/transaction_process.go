@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"encoding/json"
+	"os"
 	"time"
 
 	"github.io/junirmichieletto/codebank/domain"
@@ -72,7 +73,7 @@ func (u TransactionUseCase) publishOnKafka(transactionDto dto.Transaction, trans
 		// perform rollback
 		return err
 	}
-	err = u.KafkaProducer.Publish(string(transactionJson), "payments")
+	err = u.KafkaProducer.Publish(string(transactionJson), os.Getenv("KafkaTransactionsTopic"))
 	if err != nil {
 		return err
 	}
