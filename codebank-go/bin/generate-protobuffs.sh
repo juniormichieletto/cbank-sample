@@ -1,2 +1,1 @@
-cd ..
-protoc --proto_path=grpc grpc/protofile/*.proto --go_out=. --go-grpc_out=.
+protoc --proto_path=infrastructure/grpc infrastructure/grpc/protofile/*.proto --go_out=infrastructure --go-grpc_out=infrastructure
